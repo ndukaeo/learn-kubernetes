@@ -79,29 +79,29 @@ spec:
       port: 80
       targetPort: 80
 
-#---
-#apiVersion: apps/v1
-#kind: Deployment
-#metadata:
-#  name: deploy-06
-#  labels:
-#    appName: nginx
-#    type: deploy
-#spec:
-#  replicas: 1
-#  selector:
-#    matchLabels:
-#      appName: nginx
-#      type: deploy
-#  template:
-#    metadata:
-#      labels:
-#        appName: nginx
-#        type: deploy
-#    spec:
-#      containers:
-#        - name: nginx
-#          image: docker.io/nginx:1.24
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-06
+  labels:
+    appName: nginx
+    type: deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      appName: nginx
+      type: deploy
+  template:
+    metadata:
+      labels:
+        appName: nginx
+        type: deploy
+    spec:
+      containers:
+        - name: nginx
+          image: docker.io/nginx:1.24
 
 
 
