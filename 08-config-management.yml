@@ -87,23 +87,23 @@ data:
     [Install]
     WantedBy=multi-user.target
 
-#---
-#apiVersion: v1
-#kind: Pod
-#metadata:
-#  name: pod-07-cm-2
-#spec:
-#  containers:
-#    - name: debug
-#      image: docker.io/rkalluru/debug
-#      volumeMounts:
-#        - name: config-volume
-#          mountPath: /etc/config
-#  volumes:
-#    - name: config-volume
-#      configMap:
-#        name: cm-07-file
-#
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-07-cm-2
+spec:
+  containers:
+    - name: debug
+      image: docker.io/rkalluru/debug
+      volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+  volumes:
+    - name: config-volume
+      configMap:
+        name: cm-07-file
+
 #---
 #apiVersion: v1
 #kind: Secret
