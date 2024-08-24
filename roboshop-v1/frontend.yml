@@ -1,8 +1,8 @@
----
 apiVersion: v1
 kind: Service
 metadata:
   name: frontend
+  namespace: roboshop
 spec:
   type: LoadBalancer
   selector:
@@ -11,12 +11,13 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
----
 
+---
 apiVersion: v1
 kind: Pod
 metadata:
   name: frontend
+  namespace: roboshop
   labels:
     appName: frontend
 spec:
@@ -24,10 +25,27 @@ spec:
     - name: frontend
       image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
       env:
-        - name:
-          value:
+        - name: CATALOGUE_HOST
+          value: "catalogue"
+        - name: CATALOGUE_PORT
+          value: "8080"
+        - name: USER_HOST
+          value: "user"
+        - name: USER_PORT
+          value: "8080"
+        - name: CART_HOST
+          value: "cart"
+        - name: CART_PORT
+          value: "8080"
+        - name: SHIPPING_HOST
+          value: "shipping"
+        - name: SHIPPING_PORT
+          value: "8080"
+        - name: PAYMENT_HOST
+          value: "payment"
+        - name: PAYMENT_PORT
+          value: "8080"
 
 
-
-docker run -d -p 80:80 -e CATALOGUE_HOST=catalogue-ip -e CATALOGUE_PORT=catalogue-port -e USER_HOST=user-host -e USER_PORT=user-port -e CART_HOST=cart-host -e CART_PORT=cart-port -e SHIPPING_HOST=shipping-host -e SHIPPING_PORT=shipping-port -e PAYMENT_HOST=payment-host -e PAYMENT_PORT=payment-port  public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
+  docker run -d -p 80:80 -e CATALOGUE_HOST=catalogue-ip -e CATALOGUE_PORT=catalogue-port -e USER_HOST=user-host -e USER_PORT=user-port -e CART_HOST=cart-host -e CART_PORT=cart-port -e SHIPPING_HOST=shipping-host -e SHIPPING_PORT=shipping-port -e PAYMENT_HOST=payment-host -e PAYMENT_PORT=payment-port  public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
 
